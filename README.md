@@ -1,10 +1,11 @@
-# CrabMark Specification (v0.1 Draft)
-
-## 1. Overview
+<div align="center">
+  <h1>CrabMark Specification (v0.1 Draft)</h1>
+  <img src="assets/crabmark-logo.svg" alt="CrabMark Logo" width="192" />
+</div>
 
 **CrabMark** is a Markdown superset designed to standardise commonly used extensions while maintaining compatibility with CommonMark and GitHub Flavoured Markdown (GFM).
 
-CrabMark aims to:
+**CrabMark aims to:**
 
 * Preserve plain-text readability
 * Minimise new syntax
@@ -13,68 +14,68 @@ CrabMark aims to:
 
 ---
 
-## 2. Design Principles
+## 1. Design Principles
 
-### 2.1 Compatibility
+### 1.1 Compatibility
 
 * All valid [CommonMark](https://commonmark.org/) is valid CrabMark
 * [GFM](https://github.github.com/gfm/) features are considered baseline where applicable
 
-### 2.2 Minimal Syntax Expansion
+### 1.2 Minimal Syntax Expansion
 
 * Prefer existing, widely used syntax (Pandoc, MultiMarkdown, GFM)
 * Avoid introducing new syntactic forms unless necessary
 
-### 2.3 Clear Separation
+### 1.3 Clear Separation
 
 * **Inline features** → lightweight text semantics
 * **Block features** → fenced rendering engines
 
-### 2.4 Extensibility
+### 1.4 Extensibility
 
 * All advanced rendering is handled via fenced blocks
 
 ---
 
-## 3. Inline Syntax
+## 2. Inline Syntax
 
-### 3.1 Superscript
+### 2.1 Superscript
 
 ```
 ^text^
 ```
 
-### 3.2 Subscript
+### 2.2 Subscript
 
 ```
 ~text~
 ```
 
-### 3.3 Strikethrough
+### 2.3 Strikethrough
 
 ```
 ~~text~~
 ```
 
-### 3.4 Insertion
+### 2.4 Insertion
 
 ```
 {++text++}
 ```
 
-### 3.5 Deletion
+### 2.5 Deletion
 
 ```
 {--text--}
 ```
 
-### 3.6 Highlight
+### 2.6 Highlight
 
 ```
 ==text==
 ```
 
-### 3.7 Footnotes
+### 2.7 Footnotes
 
 Reference:
 
@@ -88,7 +89,7 @@ Definition:
 [^1]: Footnote content
 ```
 
-### 3.8 Inline Math
+### 2.8 Inline Math
 
 ```
 $E = mc^2$
@@ -96,9 +97,9 @@ $E = mc^2$
 
 ---
 
-## 4. Block Syntax
+## 3. Block Syntax
 
-### 4.1 Fenced Block Model
+### 3.1 Fenced Block Model
 
 All structured or renderable content uses fenced blocks:
 
@@ -112,7 +113,7 @@ Where `<type>` defines the rendering engine.
 
 ---
 
-### 4.2 Display Math
+### 3.2 Display Math
 
 ````markdown
 ```math
@@ -122,7 +123,7 @@ E = mc^2
 
 ---
 
-### 4.3 Mermaid Diagrams
+### 3.3 Mermaid Diagrams
 
 ````markdown
 ```mermaid
@@ -133,7 +134,7 @@ graph TD
 
 ---
 
-### 4.4 Charts / Data Visualisation
+### 3.4 Charts / Data Visualisation
 
 ````markdown
 ```chart
@@ -143,7 +144,7 @@ graph TD
 
 ---
 
-### 4.5 Task Blocks (Optional Structured Form)
+### 3.5 Task Blocks (Optional Structured Form)
 
 Inline tasks remain standard:
 
@@ -163,16 +164,16 @@ Optional structured block:
 
 ---
 
-## 5. Lists and Tables
+## 4. Lists and Tables
 
-### 5.1 Task Lists
+### 4.1 Task Lists
 
 ```
 - [ ] Task
 - [x] Done
 ```
 
-### 5.2 Tables
+### 4.2 Tables
 
 Standard GFM pipe tables:
 
@@ -184,15 +185,15 @@ Standard GFM pipe tables:
 
 ---
 
-## 6. Additional Syntax
+## 5. Additional Syntax
 
-### 6.1 Abbreviations
+### 5.1 Abbreviations
 
 ```
 *[HTML]: HyperText Markup Language
 ```
 
-### 6.2 Definition Lists
+### 5.2 Definition Lists
 
 ```
 Term
@@ -200,7 +201,7 @@ Term
 : Definition
 ```
 
-### 6.3 Table of Contents
+### 5.3 Table of Contents
 
 ```
 {{TOC}}
@@ -208,7 +209,7 @@ Term
 
 ---
 
-## 7. Metadata
+## 6. Metadata
 
 YAML frontmatter is supported:
 
@@ -221,15 +222,15 @@ author: Author Name
 
 ---
 
-## 8. Parsing Rules
+## 7. Parsing Rules
 
-### 8.1 Precedence
+### 7.1 Precedence
 
 1. Fenced blocks are parsed first
 2. Inline syntax is parsed after block structure
 3. Inline math takes precedence over other inline markers within `$...$`
 
-### 8.2 Tilde Handling
+### 7.2 Tilde Handling
 
 * `~~text~~` → strikethrough
 * `~text~` → subscript
@@ -240,9 +241,9 @@ Rule:
 
 ---
 
-## 9. Rendering Model
+## 8. Rendering Model
 
-### 9.1 Block Types
+### 8.1 Block Types
 
 | Type      | Category | Description                  |
 | --------- | -------- | ---------------------------- |
@@ -252,12 +253,12 @@ Rule:
 | `tasks`   | Active   | Render interactive checklist |
 | others    | Passive  | Render as code block         |
 
-### 9.2 Active vs Passive Blocks
+### 8.2 Active vs Passive Blocks
 
 * **Active blocks** require a rendering engine
 * **Passive blocks** render as standard code blocks if unsupported
 
-### 9.3 Fallback Behaviour
+### 8.3 Fallback Behaviour
 
 If a renderer does not support a block type:
 
@@ -266,7 +267,7 @@ If a renderer does not support a block type:
 
 ---
 
-## 10. Security Considerations
+## 9. Security Considerations
 
 * Renderers must sanitise HTML output
 * External engines (e.g. Mermaid) should be sandboxed
@@ -274,7 +275,7 @@ If a renderer does not support a block type:
 
 ---
 
-## 11. Extension Model (Future)
+## 10. Extension Model (Future)
 
 CrabMark may support extension declarations:
 
@@ -290,7 +291,7 @@ extensions:
 
 ---
 
-## 12. Goals (Non-Normative)
+## 11. Goals (Non-Normative)
 
 CrabMark aims to:
 
@@ -301,7 +302,7 @@ CrabMark aims to:
 
 ---
 
-## 13. Non-Goals
+## 12. Non-Goals
 
 CrabMark does not:
 
@@ -311,7 +312,7 @@ CrabMark does not:
 
 ---
 
-## 14. Status
+## 13. Status
 
 This is a draft specification (v0.1).
 Subject to iteration and refinement.
